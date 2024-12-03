@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ex2.Models;
+namespace EX2.Models;
 
 public partial class User
 {

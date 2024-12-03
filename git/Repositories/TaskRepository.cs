@@ -9,18 +9,26 @@ namespace EX2.Repositories
     public class TaskRepository: ITaskRepository
     {
         private readonly TasksDbContext _context;
-        public TaskRepository(TasksDbContext context)
+        private readonly ILogger _logger;
+        private readonly repositories.Logger.Logger _loggerFactory;
+
+        public TaskRepository(TasksDbContext context, repositories.Logger.Logger _loggerFactory)
         {
             _context = context;
+            _loggerFactory = loggerFactory;
+            _logger = _logger.GetLogger(true);
         }
+
         public IEnumerable<Tasks> GetTasks()
         {
+
             return _context.Tasks.ToList();
         }
         public void addTask(Tasks newTask)
         {
             _context.Tasks.Add(newTask);
             _context.SaveChanges();
+
         }
 
         public void DeleteTaskById(int id)

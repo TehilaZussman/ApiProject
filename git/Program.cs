@@ -14,6 +14,18 @@ builder.Services.AddDbContext<TasksDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+
+//builder.Services.AddScoped<ILogger, Logger>();
+
+//builder.Services.AddScoped<FileLoggerService>(provider =>
+//    new FileLoggerService("logs.txt")
+//);
+
+//builder.Repositories.AddScoped<EX2.Repositories.Logger.Logger>();
+
+
+
+
 // Add services to the container.
 builder.Services.AddControllers();
 

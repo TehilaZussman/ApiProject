@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ex2.Models;
+namespace EX2.Models;
 
 public partial class TasksDbContext : DbContext
 {
@@ -20,6 +20,8 @@ public partial class TasksDbContext : DbContext
     public virtual DbSet<Tasks> Tasks { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<AttachPath> AttachPath { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -85,6 +87,30 @@ public partial class TasksDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("phone");
         });
+
+        modelBuilder.Entity <Attachments>(entity =>
+        {
+            entity.ToTable("attachments");
+            entity.HasKey(e => e.AttachId);
+
+            entity.Property(e => e.AttachId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("AttachId");
+            entity.Property(e => e.AttachName)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("AttachName");
+            entity.Property(e => e.AttachPath)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("AttachPath");
+            entity.Property(e => e.UploadDate)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("UploadDate");
+
+        })
 
         OnModelCreatingPartial(modelBuilder);
     }
